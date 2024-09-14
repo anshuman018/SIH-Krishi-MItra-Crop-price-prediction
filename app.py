@@ -13,6 +13,7 @@ app.config['CORS_HEADERS'] = 'Content-Type'
 
 cors = CORS(app, resources={r"/ticker": {"origins": "https://crop-price-predictor.onrender.com"}})
 
+
 commodity_dict = {
     "arhar": "static/Arhar.csv",
     "bajra": "static/Bajra.csv",
@@ -164,7 +165,8 @@ def crop_profile(name):
     return render_template('commodity.html', context=context)
 
 @app.route('/ticker/<item>/<number>')
-@cross_origin(origin='localhost',headers=['Content- Type','Authorization'])
+@cross_origin(origin='https://crop-price-predictor.onrender.com', headers=['Content-Type', 'Authorization'])
+
 def ticker(item, number):
     n = int(number)
     i = int(item)
